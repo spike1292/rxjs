@@ -1,0 +1,26 @@
+{
+  "name": "rxjs",
+  "version": "0.0.1",
+  "description": "demo rxjs",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+		"start": "browser-sync start --server --files \"*.html, css/*.css\""
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+ssh://git@github.com/spike1292/rxjs.git"
+  },
+  "keywords": [
+    "rxjs",
+    "reactive"
+  ],
+  "author": "Henk Bakker",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/spike1292/rxjs/issues"
+  },
+  "homepage": "https://github.com/spike1292/rxjs#readme",
+  "devDependencies": {
+    "browser-sync": "^2.17.5"
+  }
+}
