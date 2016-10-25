@@ -12,12 +12,15 @@ $(document).ready(function () {
 	var requestStream = refreshClickStream.startWith('startup click')
 		.map(function () {
 			var randomOffset = Math.floor(Math.random() * 500);
-			return 'https://api.github.com/users?since=' + randomOffset + '&access_token=4c6c5bfe2f11e99576b93cf43420ad206b9bbf68';
+			return 'https://api.github.com/users?since=' + randomOffset;
 		});
 
 	var responseStream = requestStream
 		.flatMapLatest(function (requestUrl) {
 			return Rx.Observable.fromPromise(jQuery.getJSON(requestUrl));
+		})
+		.do(undefined, function (error) {
+			console.error(error);
 		})
 		.publish()
 		.refCount();
