@@ -6,6 +6,8 @@ $(document).ready(function () {
 
 	var refreshClickStream = Rx.Observable.fromEvent(refreshButton, 'click');
 	var close1ClickStream = Rx.Observable.fromEvent(close1Button, 'click');
+	var close2ClickStream = Rx.Observable.fromEvent(close2Button, 'click');
+	var close3ClickStream = Rx.Observable.fromEvent(close3Button, 'click');
 
 	var requestStream = refreshClickStream.startWith('startup click')
 		.map(function () {
@@ -18,22 +20,36 @@ $(document).ready(function () {
 			return Rx.Observable.fromPromise(jQuery.getJSON(requestUrl));
 		});
 
-	var suggestion1Stream = close1ClickStream.startWith('startup click')
-		.combineLatest(responseStream,
-			function (click, listUsers) {
-				return listUsers[Math.floor(Math.random() * listUsers.length)];
-			}
-		)
-		.merge(
-			refreshClickStream.map(function () {
-				return null;
-			})
-		)
-		.startWith(null);
+
+	function createSuggestionStream(closeStream) {
+		return closeStream.startWith('startup click')
+			.combineLatest(responseStream,
+				function (click, listUsers) {
+					return listUsers[Math.floor(Math.random() * listUsers.length)];
+				}
+			)
+			.merge(
+				refreshClickStream.map(function () {
+					return null;
+				})
+			)
+			.startWith(null);
+	}
+
+	var suggestion1Stream = createSuggestionStream(close1ClickStream);
+	var suggestion2Stream = createSuggestionStream(close2ClickStream);
+	var suggestion3Stream = createSuggestionStream(close3ClickStream);
 
 	suggestion1Stream.subscribe(function (suggestion) {
-		debugger;
 		renderSuggestion(suggestion, '.suggestion1');
+	});
+
+	suggestion2Stream.subscribe(function (suggestion) {
+		renderSuggestion(suggestion, '.suggestion2');
+	});
+
+	suggestion3Stream.subscribe(function (suggestion) {
+		renderSuggestion(suggestion, '.suggestion3');
 	});
 
 	// Rendering ---------------------------------------------------
