@@ -21,7 +21,13 @@ $(document).ready(function () {
 		.map(function (listUsers) {
 			// get one random user from the list
 			return listUsers[Math.floor(Math.random() * listUsers.length)];
-		});
+		})
+		.merge(
+			refreshClickStream.map(function () {
+				return null;
+			})
+		)
+		.startWith(null);
 
 	suggestion1Stream.subscribe(function (suggestion) {
 		debugger;
