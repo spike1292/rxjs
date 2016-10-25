@@ -16,9 +16,11 @@ $(document).ready(function () {
 		});
 
 	var responseStream = requestStream
-		.flatMap(function (requestUrl) {
+		.flatMapLatest(function (requestUrl) {
 			return Rx.Observable.fromPromise(jQuery.getJSON(requestUrl));
-		});
+		})
+		.publish()
+		.refCount();
 
 
 	function createSuggestionStream(closeStream) {
