@@ -1,11 +1,20 @@
 $(document).ready(function () {
-
 	var refreshButton = document.querySelector('.refresh');
 	var closeButton1 = document.querySelector('.close1');
 	var closeButton2 = document.querySelector('.close2');
 	var closeButton3 = document.querySelector('.close3');
 
+	var requestStream = Rx.Observable.just('https://api.github.com/users?access_token=4c6c5bfe2f11e99576b93cf43420ad206b9bbf68');
 
+	var responseStream = requestStream
+		.flatMap(function (requestUrl) {
+			return Rx.Observable.fromPromise(jQuery.getJSON(requestUrl));
+		});
+
+	responseStream.subscribe(function (response) {
+		// render `response` to the DOM however you wish
+		debugger;
+	});
 
 	// Rendering ---------------------------------------------------
 	function renderSuggestion(suggestedUser, selector) {
