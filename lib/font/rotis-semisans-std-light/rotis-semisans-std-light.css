@@ -1,0 +1,9 @@
+
+@font-face {font-family: "Rotis SemiSans Std Light";
+    src: url("rotis-semisans-std-light.eot"); /* IE9*/
+    src: url("rotis-semisans-std-light.eot?#iefix") format("embedded-opentype"), /* IE6-IE8 */
+    url("rotis-semisans-std-light.woff2") format("woff2"), /* chrome、firefox */
+    url("rotis-semisans-std-light.woff") format("woff"), /* chrome、firefox */
+    url("rotis-semisans-std-light.ttf") format("truetype"), /* chrome、firefox、opera、Safari, Android, iOS 4.2+*/
+    url("rotis-semisans-std-light.svg#Rotis SemiSans Std Light") format("svg"); /* iOS 4.1- */
+}

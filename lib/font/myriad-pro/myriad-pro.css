@@ -1,0 +1,8 @@
+@font-face {font-family: "Myriad Pro";
+    src: url("myriad-pro.eot"); /* IE9*/
+    src: url("myriad-pro.eot?#iefix") format("embedded-opentype"), /* IE6-IE8 */
+    url("myriad-pro.woff2") format("woff2"), /* chrome、firefox */
+    url("myriad-pro.woff") format("woff"), /* chrome、firefox */
+    url("myriad-pro.ttf") format("truetype"), /* chrome、firefox、opera、Safari, Android, iOS 4.2+*/
+    url("myriad-pro.svg#Myriad Pro") format("svg"); /* iOS 4.1- */
+}
