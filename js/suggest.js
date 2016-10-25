@@ -6,7 +6,7 @@ $(document).ready(function () {
 
 	var refreshClickStream = Rx.Observable.fromEvent(refreshButton, 'click');
 
-	var requestStream = refreshClickStream
+	var requestStream =  refreshClickStream.startWith('startup click')
 		.map(function () {
 			var randomOffset = Math.floor(Math.random() * 500);
 			return 'https://api.github.com/users?since=' + randomOffset + '&access_token=4c6c5bfe2f11e99576b93cf43420ad206b9bbf68';
