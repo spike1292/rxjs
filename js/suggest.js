@@ -18,7 +18,7 @@ $(document).ready(function () {
 			return Rx.Observable.fromPromise(jQuery.getJSON(requestUrl));
 		});
 
-	var suggestion1Stream = close1ClickStream
+	var suggestion1Stream = close1ClickStream.startWith('startup click')
 		.combineLatest(responseStream,
 			function (click, listUsers) {
 				return listUsers[Math.floor(Math.random() * listUsers.length)];
